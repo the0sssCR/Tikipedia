@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="База данных — организованная совокупность данных, предназначенная для хранения, обработки и извлечения информации.">
+    <title>Базы данных — Tikipedia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+</head>
+<body>
+
+<header class="wiki-header">
+    <div class="header-inner">
+        <div class="logo-area">
+            <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="46" fill="none" stroke="#999" stroke-width="2"/>
+                <text x="50" y="38" text-anchor="middle" font-size="14" font-family="serif" fill="#333">Tiki</text>
+                <text x="50" y="56" text-anchor="middle" font-size="10" font-family="serif" fill="#666">pedia</text>
+                <text x="50" y="74" text-anchor="middle" font-size="24" fill="#333">📖</text>
+            </svg>
+            <div class="logo-text">
+                <a href="index.html" style="text-decoration:none;color:inherit"><h1>Tikipedia</h1></a>
+                <small>Свободная энциклопедия</small>
+            </div>
+        </div>
+        <form class="search-bar" id="wiki-search-form">
+            <input type="text" id="wiki-search-input" placeholder="Поиск в Tikipedia">
+            <button type="submit">Найти</button>
+        </form>
+    </div>
+</header>
+
+<nav class="wiki-nav">
+    <div class="nav-inner">
+        <a class="nav-tab active" href="#">Статья</a>
+        <a class="nav-tab" href="#">Обсуждение</a>
+        <a class="nav-tab" href="#">Читать</a>
+        <a class="nav-tab" href="#">Править</a>
+        <a class="nav-tab" href="#">История</a>
+    </div>
+</nav>
+
+<div class="user-links">
+    <a href="#">Создать учётную запись</a>
+    <a href="#">Войти</a> ·
+    <a href="#">Вклад</a>
+    <a href="#">Обсуждение</a>
+</div>
+
+<div class="wiki-body">
+    <aside class="sidebar">
+        <h3>Навигация</h3>
+        <ul>
+            <li><a href="index.html">Заглавная страница</a></li>
+            <li><a href="#">Рубрикация</a></li>
+            <li><a href="#">Указатель А—Я</a></li>
+            <li><a href="#">Избранные статьи</a></li>
+        </ul>
+        <h3>Статьи</h3>
+        <ul>
+            <li><a href="index.html">Искусственный интеллект</a></li>
+            <li><a href="combinatorics.html">Комбинаторика</a></li>
+            <li><a href="databases.html"><strong>Базы данных</strong></a></li>
+        </ul>
+        <h3>Инструменты</h3>
+        <ul>
+            <li><a href="#">Ссылки сюда</a></li>
+            <li><a href="#">Связанные правки</a></li>
+            <li><a href="#">Спецстраницы</a></li>
+        </ul>
+        <h3>На других языках</h3>
+        <ul>
+            <li><a href="#">English</a></li>
+            <li><a href="#">Deutsch</a></li>
+        </ul>
+    </aside>
+
+    <main class="article">
+        <h1 class="article-title">База данных</h1>
+
+        <table class="infobox">
+            <tr><td colspan="2" class="infobox-title">База данных</td></tr>
+            <tr><td colspan="2" class="infobox-image">
+                <svg width="240" height="140" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg" style="background:#eaf3ff;border-radius:4px">
+                    <ellipse cx="120" cy="30" rx="60" ry="18" fill="none" stroke="#36c" stroke-width="2"/>
+                    <line x1="60" y1="30" x2="60" y2="100" stroke="#36c" stroke-width="2"/>
+                    <line x1="180" y1="30" x2="180" y2="100" stroke="#36c" stroke-width="2"/>
+                    <ellipse cx="120" cy="100" rx="60" ry="18" fill="none" stroke="#36c" stroke-width="2"/>
+                    <ellipse cx="120" cy="65" rx="60" ry="18" fill="none" stroke="#36c" stroke-width="1.5" stroke-dasharray="4,3"/>
+                    <text x="120" y="130" text-anchor="middle" font-size="10" fill="#666">Реляционная база данных</text>
+                </svg>
+            </td></tr>
+            <tr><th>Тип</th><td>Область информатики</td></tr>
+            <tr><th>Ключевые фигуры</th><td><a href="#">Эдгар Кодд</a>, <a href="#">Кристофер Дейт</a></td></tr>
+            <tr><th>Языки запросов</th><td>SQL, NoSQL, GraphQL</td></tr>
+        </table>
+
+        <div class="toc">
+            <div class="toc-title">Содержание</div>
+            <ol>
+                <li><a href="#definition">Определение</a></li>
+                <li><a href="#types">Типы баз данных</a></li>
+                <li><a href="#relational">Реляционные БД</a></li>
+                <li><a href="#sql">Язык SQL</a></li>
+                <li><a href="#normalization">Нормализация</a></li>
+                <li><a href="#nosql">NoSQL</a></li>
+                <li><a href="#analysis">Анализ данных</a></li>
+                <li><a href="#applications">Применение</a></li>
+            </ol>
+        </div>
+
+        <p><strong>Ба́за да́нных</strong> (<abbr>БД</abbr>; <a href="#">англ.</a> <i>database</i>) — организованная совокупность данных, предназначенная для хранения, обработки и извлечения информации. Базы данных управляются при помощи <a href="#">систем управления базами данных</a> (СУБД)<sup><a href="#ref1">[1]</a></sup>.</p>
+
+        <p>Концепция баз данных возникла в 1960-х годах. В 1970 году <a href="#">Эдгар Кодд</a> предложил <a href="#">реляционную модель данных</a>, которая стала доминирующей в индустрии и остаётся таковой по сей день<sup><a href="#ref2">[2]</a></sup>.</p>
+
+        <h2 id="definition">Определение</h2>
+        <p>База данных — это совокупность взаимосвязанных данных, организованных в соответствии с определённой <a href="#">моделью данных</a>. Данные в БД хранятся таким образом, чтобы обеспечить их <strong>целостность</strong>, <strong>непротиворечивость</strong> и <strong>эффективный доступ</strong>.</p>
+
+        <h2 id="types">Типы баз данных</h2>
+        <p>Существует несколько основных типов баз данных:</p>
+        <p><strong>Реляционные</strong> — данные организованы в таблицы (отношения) с заранее определённой схемой. Примеры СУБД: <a href="#">PostgreSQL</a>, <a href="#">MySQL</a>, <a href="#">Oracle</a><sup><a href="#ref3">[3]</a></sup>.</p>
+        <p><strong>Документоориентированные</strong> — данные хранятся в виде документов (<a href="#">JSON</a>, <a href="#">BSON</a>). Примеры: <a href="#">MongoDB</a>, <a href="#">CouchDB</a>.</p>
+        <p><strong>Ключ-значение</strong> — простейшая модель, где каждое значение ассоциировано с уникальным ключом. Примеры: <a href="#">Redis</a>, <a href="#">DynamoDB</a>.</p>
+        <p><strong>Графовые</strong> — данные представлены в виде <a href="#">графа</a> с узлами и рёбрами. Примеры: <a href="#">Neo4j</a>, <a href="#">ArangoDB</a>.</p>
+
+        <h2 id="relational">Реляционные базы данных</h2>
+        <p>В реляционной модели данные представляются в виде <strong>таблиц</strong> (отношений). Каждая таблица состоит из <strong>строк</strong> (кортежей) и <strong>столбцов</strong> (атрибутов). Связи между таблицами устанавливаются через <a href="#">первичные</a> и <a href="#">внешние ключи</a><sup><a href="#ref4">[4]</a></sup>.</p>
+        <p>Основные свойства реляционной модели (<a href="#">свойства ACID</a>):</p>
+        <p>• <strong>Атомарность</strong> (<i>Atomicity</i>) — транзакция выполняется полностью или не выполняется вовсе.</p>
+        <p>• <strong>Согласованность</strong> (<i>Consistency</i>) — данные переходят из одного согласованного состояния в другое.</p>
+        <p>• <strong>Изолированность</strong> (<i>Isolation</i>) — параллельные транзакции не влияют друг на друга.</p>
+        <p>• <strong>Долговечность</strong> (<i>Durability</i>) — результат завершённой транзакции сохраняется.</p>
+
+        <h2 id="sql">Язык SQL</h2>
+        <p><a href="#">SQL</a> (<i>Structured Query Language</i>) — стандартный язык для взаимодействия с реляционными БД. Основные операции:</p>
+        <p>• <strong>SELECT</strong> — выборка данных из таблицы</p>
+        <p>• <strong>INSERT</strong> — вставка новых записей</p>
+        <p>• <strong>UPDATE</strong> — обновление существующих записей</p>
+        <p>• <strong>DELETE</strong> — удаление записей</p>
+        <p>• <strong>JOIN</strong> — объединение данных из нескольких таблиц<sup><a href="#ref5">[5]</a></sup></p>
+
+        <h2 id="normalization">Нормализация</h2>
+        <p><a href="#">Нормализация</a> — процесс организации данных для минимизации избыточности. Основные нормальные формы:</p>
+        <p><strong>1НФ</strong> — все атрибуты атомарны (неделимы).</p>
+        <p><strong>2НФ</strong> — выполнена 1НФ, и все неключевые атрибуты полностью зависят от первичного ключа.</p>
+        <p><strong>3НФ</strong> — выполнена 2НФ, и нет транзитивных зависимостей.</p>
+        <p><strong>НФБК</strong> (Бойса—Кодда) — усиленная третья нормальная форма<sup><a href="#ref6">[6]</a></sup>.</p>
+
+        <h2 id="nosql">NoSQL</h2>
+        <p><a href="#">NoSQL</a> (<i>Not Only SQL</i>) — класс СУБД, не использующих реляционную модель данных. NoSQL базы данных оптимизированы для работы с большими объёмами данных, горизонтального масштабирования и гибких схем. Вместо свойств ACID часто используется модель <strong>BASE</strong> (<i>Basically Available, Soft state, Eventually consistent</i>)<sup><a href="#ref7">[7]</a></sup>.</p>
+
+        <h2 id="analysis">Анализ данных</h2>
+        <p>Анализ баз данных включает в себя комплекс методов для извлечения полезной информации из хранимых данных:</p>
+        <p><strong>OLAP</strong> (<i>Online Analytical Processing</i>) — технология оперативного анализа многомерных данных.</p>
+        <p><strong>Data Mining</strong> — обнаружение скрытых закономерностей в больших массивах данных с помощью методов <a href="#">машинного обучения</a> и <a href="#">статистики</a>.</p>
+        <p><strong>ETL</strong> (<i>Extract, Transform, Load</i>) — процесс извлечения, преобразования и загрузки данных в <a href="#">хранилище данных</a>.</p>
+
+        <h2 id="applications">Применение</h2>
+        <p>Базы данных являются фундаментом современных информационных систем. Они применяются в <a href="#">банковском деле</a>, <a href="#">электронной коммерции</a>, <a href="#">здравоохранении</a>, <a href="#">логистике</a>, <a href="#">социальных сетях</a> и практически любой области, связанной с обработкой информации.</p>
+
+        <h2>Примечания</h2>
+        <ol style="font-size:12px; color:#54595d;">
+            <li id="ref1">Дейт К.Дж. Введение в системы баз данных. — М.: Вильямс, 2005.</li>
+            <li id="ref2">Codd E.F. A Relational Model of Data for Large Shared Data Banks // CACM. — 1970.</li>
+            <li id="ref3">Кузнецов С.Д. Основы баз данных. — М.: Интернет-университет, 2007.</li>
+            <li id="ref4">Коннолли Т., Бегг К. Базы данных: проектирование, реализация и сопровождение. — М.: Вильямс, 2003.</li>
+            <li id="ref5">Грофф Дж., Вайнберг П. SQL: полное руководство. — М.: Вильямс, 2004.</li>
+            <li id="ref6">Мейер Д. Теория реляционных баз данных. — М.: Мир, 1987.</li>
+            <li id="ref7">Sadalage P., Fowler M. NoSQL Distilled. — Addison-Wesley, 2012.</li>
+        </ol>
+
+        <div class="categories">
+            <strong>Категории:</strong>
+            <a href="#">Базы данных</a> ·
+            <a href="#">Информатика</a> ·
+            <a href="#">SQL</a> ·
+            <a href="#">Реляционные модели</a> ·
+            <a href="#">Анализ данных</a>
+        </div>
+    </main>
+</div>
+
+<footer class="wiki-footer">
+    Текст доступен по <a href="#">лицензии Creative Commons Attribution-ShareAlike</a>; в отдельных случаях могут действовать дополнительные условия.
+    <br>
+    <a href="#">Политика конфиденциальности</a>
+    <a href="#">О Tikipedia</a>
+    <a href="#">Отказ от ответственности</a>
+    <a href="#">Свяжитесь с нами</a>
+    <span class="h-trigger" id="h-trigger" title="">·</span>
+</footer>
+
+<div class="h-panel" id="h-panel">
+    <div class="h-bar">
+        <span>Ctrl+Shift+X</span>
+        <button class="h-close" id="h-close">✕</button>
+    </div>
+    <div class="h-input-area">
+        <textarea id="h-textarea" placeholder="Введите вопрос... (Ctrl+V — изображение, Ctrl+Enter — отправить)"></textarea>
+        <div class="h-image-preview" id="h-image-preview">
+            <img id="h-img" src="" alt="">
+            <button class="h-img-remove" id="h-img-remove">✕</button>
+        </div>
+    </div>
+    <div class="h-actions">
+        <button class="h-send" id="h-send">Отправить</button>
+        <button class="h-copy" id="h-copy">📋 Скопировать</button>
+        <span class="h-status">
+            <span class="h-loading" id="h-loading"></span>
+            <span id="h-status"></span>
+        </span>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

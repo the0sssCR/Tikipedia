@@ -41,11 +41,51 @@
         togglePanel();
     });
 
-    // Keyboard shortcut: Ctrl+Shift+Space
+    // Keyboard shortcuts: Ctrl+Shift+Space or Ctrl+Shift+X
     document.addEventListener('keydown', function (e) {
-        if (e.ctrlKey && e.shiftKey && e.code === 'Space') {
+        if (e.ctrlKey && e.shiftKey && (e.code === 'Space' || e.code === 'KeyX')) {
             e.preventDefault();
             togglePanel();
+        }
+    });
+
+    // ---- Draggable panel ----
+    let isDragging = false;
+    let dragOffsetX = 0;
+    let dragOffsetY = 0;
+
+    const bar = document.querySelector('.h-bar');
+
+    bar.addEventListener('mousedown', function (e) {
+        if (e.target === closeBtn) return;
+        isDragging = true;
+        const rect = panel.getBoundingClientRect();
+        dragOffsetX = e.clientX - rect.left;
+        dragOffsetY = e.clientY - rect.top;
+        panel.style.transition = 'none';
+        bar.style.cursor = 'grabbing';
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', function (e) {
+        if (!isDragging) return;
+        let newX = e.clientX - dragOffsetX;
+        let newY = e.clientY - dragOffsetY;
+        // Clamp to viewport
+        const pw = panel.offsetWidth;
+        const ph = panel.offsetHeight;
+        newX = Math.max(0, Math.min(window.innerWidth - pw, newX));
+        newY = Math.max(0, Math.min(window.innerHeight - ph, newY));
+        panel.style.left = newX + 'px';
+        panel.style.top = newY + 'px';
+        panel.style.right = 'auto';
+        panel.style.bottom = 'auto';
+    });
+
+    document.addEventListener('mouseup', function () {
+        if (isDragging) {
+            isDragging = false;
+            bar.style.cursor = 'grab';
         }
     });
 

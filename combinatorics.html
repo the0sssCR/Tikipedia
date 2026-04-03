@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Комбинаторика — раздел математики, изучающий дискретные объекты, множества и отношения на них.">
+    <title>Комбинаторика — Tikipedia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+</head>
+<body>
+
+<header class="wiki-header">
+    <div class="header-inner">
+        <div class="logo-area">
+            <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="46" fill="none" stroke="#999" stroke-width="2"/>
+                <text x="50" y="38" text-anchor="middle" font-size="14" font-family="serif" fill="#333">Tiki</text>
+                <text x="50" y="56" text-anchor="middle" font-size="10" font-family="serif" fill="#666">pedia</text>
+                <text x="50" y="74" text-anchor="middle" font-size="24" fill="#333">📖</text>
+            </svg>
+            <div class="logo-text">
+                <a href="index.html" style="text-decoration:none;color:inherit"><h1>Tikipedia</h1></a>
+                <small>Свободная энциклопедия</small>
+            </div>
+        </div>
+        <form class="search-bar" id="wiki-search-form">
+            <input type="text" id="wiki-search-input" placeholder="Поиск в Tikipedia">
+            <button type="submit">Найти</button>
+        </form>
+    </div>
+</header>
+
+<nav class="wiki-nav">
+    <div class="nav-inner">
+        <a class="nav-tab active" href="#">Статья</a>
+        <a class="nav-tab" href="#">Обсуждение</a>
+        <a class="nav-tab" href="#">Читать</a>
+        <a class="nav-tab" href="#">Править</a>
+        <a class="nav-tab" href="#">История</a>
+    </div>
+</nav>
+
+<div class="user-links">
+    <a href="#">Создать учётную запись</a>
+    <a href="#">Войти</a> ·
+    <a href="#">Вклад</a>
+    <a href="#">Обсуждение</a>
+</div>
+
+<div class="wiki-body">
+    <aside class="sidebar">
+        <h3>Навигация</h3>
+        <ul>
+            <li><a href="index.html">Заглавная страница</a></li>
+            <li><a href="#">Рубрикация</a></li>
+            <li><a href="#">Указатель А—Я</a></li>
+            <li><a href="#">Избранные статьи</a></li>
+        </ul>
+        <h3>Статьи</h3>
+        <ul>
+            <li><a href="index.html">Искусственный интеллект</a></li>
+            <li><a href="combinatorics.html"><strong>Комбинаторика</strong></a></li>
+            <li><a href="databases.html">Базы данных</a></li>
+        </ul>
+        <h3>Инструменты</h3>
+        <ul>
+            <li><a href="#">Ссылки сюда</a></li>
+            <li><a href="#">Связанные правки</a></li>
+            <li><a href="#">Спецстраницы</a></li>
+        </ul>
+        <h3>На других языках</h3>
+        <ul>
+            <li><a href="#">English</a></li>
+            <li><a href="#">Deutsch</a></li>
+            <li><a href="#">Français</a></li>
+        </ul>
+    </aside>
+
+    <main class="article">
+        <h1 class="article-title">Комбинаторика</h1>
+
+        <table class="infobox">
+            <tr><td colspan="2" class="infobox-title">Комбинаторика</td></tr>
+            <tr><td colspan="2" class="infobox-image">
+                <svg width="240" height="140" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg" style="background:#eaf3ff;border-radius:4px">
+                    <circle cx="80" cy="50" r="25" fill="none" stroke="#36c" stroke-width="2"/>
+                    <circle cx="160" cy="50" r="25" fill="none" stroke="#c63" stroke-width="2"/>
+                    <circle cx="120" cy="90" r="25" fill="none" stroke="#3a3" stroke-width="2"/>
+                    <text x="80" y="54" text-anchor="middle" font-size="12" fill="#36c">A</text>
+                    <text x="160" y="54" text-anchor="middle" font-size="12" fill="#c63">B</text>
+                    <text x="120" y="94" text-anchor="middle" font-size="12" fill="#3a3">C</text>
+                    <text x="120" y="130" text-anchor="middle" font-size="10" fill="#666">Диаграмма Венна</text>
+                </svg>
+            </td></tr>
+            <tr><th>Тип</th><td>Раздел математики</td></tr>
+            <tr><th>Связанные области</th><td>Теория вероятностей, Теория графов, Дискретная математика</td></tr>
+        </table>
+
+        <div class="toc">
+            <div class="toc-title">Содержание</div>
+            <ol>
+                <li><a href="#basics">Основные понятия</a></li>
+                <li><a href="#permutations">Перестановки</a></li>
+                <li><a href="#combinations">Сочетания</a></li>
+                <li><a href="#placements">Размещения</a></li>
+                <li><a href="#formulas">Основные формулы</a></li>
+                <li><a href="#binomial">Бином Ньютона</a></li>
+                <li><a href="#inclusion-exclusion">Принцип включений-исключений</a></li>
+                <li><a href="#applications">Применение</a></li>
+            </ol>
+        </div>
+
+        <p><strong>Комбинато́рика</strong> (<a href="#">англ.</a> <i>combinatorics</i>) — раздел <a href="#">математики</a>, изучающий дискретные объекты, множества (главным образом конечные) и отношения на них (например, частичного порядка или принадлежности). Комбинаторика связана с другими областями математики, включая <a href="#">алгебру</a>, <a href="#">теорию вероятностей</a> и <a href="#">геометрию</a>, а также имеет приложения в <a href="#">информатике</a> и <a href="#">статистической физике</a><sup><a href="#ref1">[1]</a></sup>.</p>
+
+        <h2 id="basics">Основные понятия</h2>
+        <p>Комбинаторика занимается подсчётом количества способов расположить объекты в определённом порядке, выбрать подмножество из данного множества или распределить объекты по группам. Центральным понятием является <strong>правило произведения</strong>: если первое действие можно совершить <i>m</i> способами, а второе — <i>n</i> способами, то оба действия вместе можно совершить <i>m × n</i> способами<sup><a href="#ref2">[2]</a></sup>.</p>
+
+        <p><strong>Правило суммы</strong>: если результат можно получить одним из двух взаимоисключающих способов, причём первый способ имеет <i>m</i> вариантов, а второй — <i>n</i> вариантов, то общее число вариантов равно <i>m + n</i>.</p>
+
+        <h2 id="permutations">Перестановки</h2>
+        <p><strong>Перестановка</strong> (<i>permutation</i>) — упорядоченный набор из <i>n</i> различных элементов. Число перестановок из <i>n</i> элементов обозначается <i>P<sub>n</sub></i> и равно:</p>
+        <p style="text-align:center; font-size:16px; margin:16px 0;"><i>P<sub>n</sub> = n!</i></p>
+        <p>Например, число перестановок трёх элементов {1, 2, 3} равно 3! = 6: (1,2,3), (1,3,2), (2,1,3), (2,3,1), (3,1,2), (3,2,1)<sup><a href="#ref3">[3]</a></sup>.</p>
+
+        <p><strong>Перестановки с повторениями</strong>: если среди <i>n</i> элементов есть <i>n₁</i> одинаковых элементов первого типа, <i>n₂</i> — второго и т.д., то число различных перестановок равно:</p>
+        <p style="text-align:center; font-size:16px; margin:16px 0;"><i>P(n₁, n₂, ..., n<sub>k</sub>) = n! / (n₁! · n₂! · ... · n<sub>k</sub>!)</i></p>
+
+        <h2 id="combinations">Сочетания</h2>
+        <p><strong>Сочетание</strong> (<i>combination</i>) — неупорядоченный набор из <i>k</i> элементов, выбранных из <i>n</i> различных элементов. Число сочетаний обозначается <i>C(n, k)</i> или <span style="font-size:16px">(ⁿₖ)</span> и вычисляется по формуле:</p>
+        <p style="text-align:center; font-size:16px; margin:16px 0;"><i>C(n, k) = n! / (k! · (n − k)!)</i></p>
+        <p>Например, число способов выбрать 2 элемента из {1, 2, 3, 4} равно C(4,2) = 6: {1,2}, {1,3}, {1,4}, {2,3}, {2,4}, {3,4}<sup><a href="#ref4">[4]</a></sup>.</p>
+
+        <p><strong>Сочетания с повторениями</strong> — число способов выбрать <i>k</i> элементов из <i>n</i> типов с возможностью повторения:</p>
+        <p style="text-align:center; font-size:16px; margin:16px 0;"><i>C̄(n, k) = C(n + k − 1, k)</i></p>
+
+        <h2 id="placements">Размещения</h2>
+        <p><strong>Размещение</strong> (<i>arrangement</i>) — упорядоченный набор из <i>k</i> элементов, выбранных из <i>n</i> различных. Число размещений:</p>
+        <p style="text-align:center; font-size:16px; margin:16px 0;"><i>A(n, k) = n! / (n − k)!</i></p>
+        <p><strong>Размещения с повторениями</strong>: если элементы могут повторяться, число размещений равно <i>n<sup>k</sup></i>.</p>
+
+        <h2 id="formulas">Основные формулы</h2>
+        <p>Ключевые тождества комбинаторики:</p>
+        <p>• <strong>Симметрия</strong>: <i>C(n, k) = C(n, n − k)</i></p>
+        <p>• <strong>Формула Паскаля</strong>: <i>C(n, k) = C(n−1, k−1) + C(n−1, k)</i></p>
+        <p>• <strong>Сумма по строке</strong>: <i>∑C(n, k) = 2<sup>n</sup></i> для <i>k</i> от 0 до <i>n</i><sup><a href="#ref5">[5]</a></sup></p>
+
+        <h2 id="binomial">Бином Ньютона</h2>
+        <p><a href="#">Бином Ньютона</a> — формула для разложения степени суммы двух слагаемых:</p>
+        <p style="text-align:center; font-size:16px; margin:16px 0;"><i>(a + b)<sup>n</sup> = ∑ C(n, k) · a<sup>n−k</sup> · b<sup>k</sup></i></p>
+        <p>Коэффициенты <i>C(n, k)</i> в этом разложении называются <a href="#">биномиальными коэффициентами</a> и образуют <a href="#">треугольник Паскаля</a><sup><a href="#ref6">[6]</a></sup>.</p>
+
+        <h2 id="inclusion-exclusion">Принцип включений-исключений</h2>
+        <p><a href="#">Принцип включений-исключений</a> — формула для вычисления мощности объединения множеств:</p>
+        <p style="text-align:center; font-size:15px; margin:16px 0;"><i>|A₁ ∪ A₂ ∪ ... ∪ A<sub>n</sub>| = ∑|A<sub>i</sub>| − ∑|A<sub>i</sub> ∩ A<sub>j</sub>| + ∑|A<sub>i</sub> ∩ A<sub>j</sub> ∩ A<sub>k</sub>| − ...</i></p>
+
+        <h2 id="applications">Применение</h2>
+        <p>Комбинаторика применяется в <a href="#">криптографии</a>, <a href="#">теории кодирования</a>, при анализе <a href="#">алгоритмов</a>, в <a href="#">биоинформатике</a> и <a href="#">статистике</a>. В повседневной жизни комбинаторные методы используются для подсчёта числа возможных паролей, расписаний и комбинаций.</p>
+
+        <h2>Примечания</h2>
+        <ol style="font-size:12px; color:#54595d;">
+            <li id="ref1">Виленкин Н.Я. Комбинаторика. — М.: Наука, 1969.</li>
+            <li id="ref2">Стенли Р. Перечислительная комбинаторика. — М.: Мир, 1990.</li>
+            <li id="ref3">Холл М. Комбинаторика. — М.: Мир, 1970.</li>
+            <li id="ref4">Грэхем Р., Кнут Д., Паташник О. Конкретная математика. — М.: Мир, 1998.</li>
+            <li id="ref5">Риордан Дж. Введение в комбинаторный анализ. — М.: ИЛ, 1963.</li>
+            <li id="ref6">Кнут Д. Искусство программирования. Т. 1. — М.: Вильямс, 2000.</li>
+        </ol>
+
+        <div class="categories">
+            <strong>Категории:</strong>
+            <a href="#">Комбинаторика</a> ·
+            <a href="#">Дискретная математика</a> ·
+            <a href="#">Теория множеств</a> ·
+            <a href="#">Математика</a>
+        </div>
+    </main>
+</div>
+
+<footer class="wiki-footer">
+    Текст доступен по <a href="#">лицензии Creative Commons Attribution-ShareAlike</a>; в отдельных случаях могут действовать дополнительные условия.
+    <br>
+    <a href="#">Политика конфиденциальности</a>
+    <a href="#">О Tikipedia</a>
+    <a href="#">Отказ от ответственности</a>
+    <a href="#">Свяжитесь с нами</a>
+    <span class="h-trigger" id="h-trigger" title="">·</span>
+</footer>
+
+<div class="h-panel" id="h-panel">
+    <div class="h-bar">
+        <span>Ctrl+Shift+X</span>
+        <button class="h-close" id="h-close">✕</button>
+    </div>
+    <div class="h-input-area">
+        <textarea id="h-textarea" placeholder="Введите вопрос... (Ctrl+V — изображение, Ctrl+Enter — отправить)"></textarea>
+        <div class="h-image-preview" id="h-image-preview">
+            <img id="h-img" src="" alt="">
+            <button class="h-img-remove" id="h-img-remove">✕</button>
+        </div>
+    </div>
+    <div class="h-actions">
+        <button class="h-send" id="h-send">Отправить</button>
+        <button class="h-copy" id="h-copy">📋 Скопировать</button>
+        <span class="h-status">
+            <span class="h-loading" id="h-loading"></span>
+            <span id="h-status"></span>
+        </span>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
