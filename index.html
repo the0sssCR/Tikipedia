@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tikipedia — свободная энциклопедия, которую может редактировать каждый.">
+    <title>Tikipedia — свободная энциклопедия</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="wiki-header">
+    <div class="header-inner">
+        <div class="logo-area">
+            <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="46" fill="none" stroke="#999" stroke-width="2"/>
+                <text x="50" y="38" text-anchor="middle" font-size="14" font-family="serif" fill="#333">Tiki</text>
+                <text x="50" y="56" text-anchor="middle" font-size="10" font-family="serif" fill="#666">pedia</text>
+                <text x="50" y="74" text-anchor="middle" font-size="24" fill="#333">📖</text>
+            </svg>
+            <div class="logo-text">
+                <h1>Tikipedia</h1>
+                <small>Свободная энциклопедия</small>
+            </div>
+        </div>
+        <form class="search-bar" id="wiki-search-form">
+            <input type="text" id="wiki-search-input" placeholder="Поиск в Tikipedia">
+            <button type="submit">Найти</button>
+            <button type="button">Перейти</button>
+        </form>
+    </div>
+</header>
+
+<!-- ============ NAV TABS ============ -->
+<nav class="wiki-nav">
+    <div class="nav-inner">
+        <a class="nav-tab active" href="#">Статья</a>
+        <a class="nav-tab" href="#">Обсуждение</a>
+        <a class="nav-tab" href="#">Читать</a>
+        <a class="nav-tab" href="#">Править</a>
+        <a class="nav-tab" href="#">История</a>
+    </div>
+</nav>
+
+<!-- ============ USER LINKS ============ -->
+<div class="user-links">
+    <a href="#">Создать учётную запись</a>
+    <a href="#">Войти</a> ·
+    <a href="#">Вклад</a>
+    <a href="#">Обсуждение</a>
+</div>
+
+<!-- ============ BODY ============ -->
+<div class="wiki-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h3>Навигация</h3>
+        <ul>
+            <li><a href="#">Заглавная страница</a></li>
+            <li><a href="#">Рубрикация</a></li>
+            <li><a href="#">Указатель А—Я</a></li>
+            <li><a href="#">Избранные статьи</a></li>
+            <li><a href="#">Случайная статья</a></li>
+            <li><a href="#">Текущие события</a></li>
+            <li><a href="#">Пожертвовать</a></li>
+        </ul>
+        <h3>Участие</h3>
+        <ul>
+            <li><a href="#">Сообщить об ошибке</a></li>
+            <li><a href="#">Портал сообщества</a></li>
+            <li><a href="#">Форум</a></li>
+            <li><a href="#">Свежие правки</a></li>
+            <li><a href="#">Новые страницы</a></li>
+            <li><a href="#">Справка</a></li>
+        </ul>
+        <h3>Инструменты</h3>
+        <ul>
+            <li><a href="#">Ссылки сюда</a></li>
+            <li><a href="#">Связанные правки</a></li>
+            <li><a href="#">Спецстраницы</a></li>
+            <li><a href="#">Постоянная ссылка</a></li>
+            <li><a href="#">Сведения о странице</a></li>
+            <li><a href="#">Цитировать страницу</a></li>
+        </ul>
+        <h3>На других языках</h3>
+        <ul>
+            <li><a href="#">English</a></li>
+            <li><a href="#">Deutsch</a></li>
+            <li><a href="#">Français</a></li>
+            <li><a href="#">Español</a></li>
+            <li><a href="#">中文</a></li>
+            <li><a href="#">日本語</a></li>
+        </ul>
+    </aside>
+
+    <!-- Article content -->
+    <main class="article">
+        <h1 class="article-title">Искусственный интеллект</h1>
+
+        <!-- Infobox -->
+        <table class="infobox">
+            <tr><td colspan="2" class="infobox-title">Искусственный интеллект</td></tr>
+            <tr><td colspan="2" class="infobox-image">
+                <svg width="240" height="160" viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg" style="background:#eaf3ff;border-radius:4px">
+                    <circle cx="120" cy="60" r="30" fill="none" stroke="#36c" stroke-width="2"/>
+                    <circle cx="112" cy="54" r="3" fill="#36c"/>
+                    <circle cx="128" cy="54" r="3" fill="#36c"/>
+                    <path d="M110,68 Q120,76 130,68" fill="none" stroke="#36c" stroke-width="2"/>
+                    <line x1="120" y1="90" x2="120" y2="120" stroke="#36c" stroke-width="2"/>
+                    <line x1="120" y1="100" x2="100" y2="110" stroke="#36c" stroke-width="2"/>
+                    <line x1="120" y1="100" x2="140" y2="110" stroke="#36c" stroke-width="2"/>
+                    <line x1="120" y1="120" x2="105" y2="140" stroke="#36c" stroke-width="2"/>
+                    <line x1="120" y1="120" x2="135" y2="140" stroke="#36c" stroke-width="2"/>
+                    <circle cx="60" cy="40" r="4" fill="#a2a9b1"/>
+                    <circle cx="180" cy="40" r="4" fill="#a2a9b1"/>
+                    <circle cx="60" cy="100" r="4" fill="#a2a9b1"/>
+                    <circle cx="180" cy="100" r="4" fill="#a2a9b1"/>
+                    <line x1="64" y1="40" x2="90" y2="50" stroke="#a2a9b1" stroke-width="1"/>
+                    <line x1="176" y1="40" x2="150" y2="50" stroke="#a2a9b1" stroke-width="1"/>
+                    <line x1="64" y1="100" x2="100" y2="100" stroke="#a2a9b1" stroke-width="1"/>
+                    <line x1="176" y1="100" x2="140" y2="100" stroke="#a2a9b1" stroke-width="1"/>
+                    <text x="120" y="155" text-anchor="middle" font-size="10" fill="#666">Схематическое представление ИИ</text>
+                </svg>
+            </td></tr>
+            <tr><th>Тип</th><td>Область информатики</td></tr>
+            <tr><th>Основан</th><td>1956 (Дартмутский семинар)</td></tr>
+            <tr><th>Ключевые фигуры</th><td><a href="#">Алан Тьюринг</a>, <a href="#">Джон Маккарти</a>, <a href="#">Марвин Минский</a></td></tr>
+            <tr><th>Связанные области</th><td>Машинное обучение, Нейронные сети, Робототехника</td></tr>
+        </table>
+
+        <!-- TOC -->
+        <div class="toc">
+            <div class="toc-title">Содержание</div>
+            <ol>
+                <li><a href="#history">История</a></li>
+                <li><a href="#approaches">Подходы</a></li>
+                <li><a href="#ml">Машинное обучение</a></li>
+                <li><a href="#nn">Нейронные сети</a></li>
+                <li><a href="#applications">Применение</a></li>
+                <li><a href="#ethics">Этические вопросы</a></li>
+                <li><a href="#future">Перспективы развития</a></li>
+                <li><a href="#refs">Примечания</a></li>
+            </ol>
+        </div>
+
+        <p><strong>Иску́сственный интелле́кт</strong> (<abbr>ИИ</abbr>; <a href="#">англ.</a> <i>artificial intelligence</i>, <i>AI</i>) — свойство <a href="#">интеллектуальных систем</a> выполнять <a href="#">творческие</a> функции, которые традиционно считаются прерогативой человека<sup><a href="#ref1">[1]</a></sup>; наука и технология создания интеллектуальных машин, особенно интеллектуальных компьютерных программ<sup><a href="#ref2">[2]</a></sup>.</p>
+
+        <p>Искусственный интеллект связан со сходной задачей использования компьютеров для понимания человеческого интеллекта, но не обязательно ограничивается биологически правдоподобными методами. Наука об ИИ начала существовать ещё в <a href="#">1956 году</a> после того, как в <a href="#">Дартмутском колледже</a> состоялся знаменательный летний семинар.</p>
+
+        <h2 id="history">История</h2>
+        <p>Идея создания искусственного подобия человеческого разума для решения различных задач и моделирования мыслительных процессов существовала ещё в <a href="#">Древней Греции</a>. Однако формальное зарождение науки произошло в 1950-х годах, когда <a href="#">Алан Тьюринг</a> предложил свой знаменитый <a href="#">тест Тьюринга</a> — критерий, позволяющий определить, может ли машина имитировать человеческое мышление<sup><a href="#ref3">[3]</a></sup>.</p>
+
+        <p>В 1956 году на семинаре в Дартмутском колледже <a href="#">Джон Маккарти</a> впервые ввёл термин «искусственный интеллект». С тех пор область прошла через несколько циклов энтузиазма и разочарования, известных как «<a href="#">зимы ИИ</a>»<sup><a href="#ref4">[4]</a></sup>.</p>
+
+        <h2 id="approaches">Подходы</h2>
+        <p>Существует множество подходов к созданию систем искусственного интеллекта. Основные из них включают:</p>
+        <p><strong>Символический подход</strong> — основан на манипулировании символами и логическом выводе. Был доминирующим в 1960–1980-х годах. Системы, построенные на этом подходе, называются <a href="#">экспертными системами</a><sup><a href="#ref5">[5]</a></sup>.</p>
+        <p><strong>Коннекционизм</strong> — подход, основанный на моделировании работы <a href="#">нейронов</a> и создании <a href="#">искусственных нейронных сетей</a>. Получил широкое распространение начиная с 2010-х годов благодаря революции в <a href="#">глубоком обучении</a>.</p>
+
+        <h2 id="ml">Машинное обучение</h2>
+        <p><a href="#">Машинное обучение</a> (<abbr>МО</abbr>) — ключевое подмножество ИИ, которое фокусируется на разработке алгоритмов, способных обучаться на данных и делать предсказания. Основные типы машинного обучения<sup><a href="#ref6">[6]</a></sup>:</p>
+        <p><strong>Обучение с учителем</strong> — алгоритм обучается на размеченных данных, где для каждого входа известен правильный ответ.</p>
+        <p><strong>Обучение без учителя</strong> — алгоритм ищет скрытые закономерности в неразмеченных данных.</p>
+        <p><strong>Обучение с подкреплением</strong> — агент обучается, взаимодействуя со средой и получая <a href="#">награды</a> или штрафы за свои действия.</p>
+
+        <h2 id="nn">Нейронные сети</h2>
+        <p><a href="#">Искусственные нейронные сети</a> — вычислительные системы, вдохновлённые биологическими <a href="#">нейронными сетями</a>, составляющими мозг животных. Современные архитектуры включают<sup><a href="#ref7">[7]</a></sup>:</p>
+        <p><strong>Свёрточные нейронные сети</strong> (<a href="#">CNN</a>) — специализируются на обработке визуальной информации.</p>
+        <p><strong>Рекуррентные нейронные сети</strong> (<a href="#">RNN</a>) — предназначены для обработки последовательных данных.</p>
+        <p><strong>Трансформеры</strong> — архитектура, предложенная в 2017 году, лежащая в основе современных <a href="#">больших языковых моделей</a> (LLM), таких как <a href="#">GPT</a>, <a href="#">Gemini</a> и <a href="#">Claude</a><sup><a href="#ref8">[8]</a></sup>.</p>
+
+        <h2 id="applications">Применение</h2>
+        <p>Современный ИИ применяется в широком спектре областей:</p>
+        <p>В <strong>медицине</strong> ИИ используется для диагностики заболеваний по медицинским изображениям, предсказания эффективности лечения и разработки новых лекарственных препаратов<sup><a href="#ref9">[9]</a></sup>.</p>
+        <p>В <strong>транспорте</strong> технологии ИИ лежат в основе систем <a href="#">автономного вождения</a> автомобилей, оптимизации маршрутов и управления дорожным движением.</p>
+        <p>В <strong>образовании</strong> ИИ применяется для персонализации процесса обучения, автоматической проверки заданий и создания адаптивных образовательных программ.</p>
+
+        <h2 id="ethics">Этические вопросы</h2>
+        <p>Развитие ИИ поднимает ряд важных этических вопросов. Среди них — проблема <a href="#">предвзятости</a> алгоритмов, вопросы <a href="#">конфиденциальности</a> данных, влияние на <a href="#">рынок труда</a> и потенциальные <a href="#">экзистенциальные риски</a>, связанные с созданием <a href="#">сверхинтеллекта</a><sup><a href="#ref10">[10]</a></sup>.</p>
+
+        <h2 id="future">Перспективы развития</h2>
+        <p>Основные направления развития ИИ в ближайшие годы включают создание более эффективных и энергосберегающих моделей, развитие <a href="#">мультимодального ИИ</a>, способного работать с различными типами данных одновременно, а также приближение к созданию <a href="#">общего искусственного интеллекта</a> (<a href="#">AGI</a>).</p>
+
+        <h2 id="refs">Примечания</h2>
+        <ol style="font-size:12px; color:#54595d;">
+            <li id="ref1">Рассел С., Норвиг П. Искусственный интеллект: современный подход. — М.: Вильямс, 2006.</li>
+            <li id="ref2">McCarthy J. What is Artificial Intelligence? Stanford University, 2007.</li>
+            <li id="ref3">Turing A. M. Computing Machinery and Intelligence // Mind. — 1950.</li>
+            <li id="ref4">Crevier D. AI: The Tumultuous History of the Search for Artificial Intelligence. — 1993.</li>
+            <li id="ref5">Feigenbaum E. A. et al. The Rise of the Expert Company. — 1988.</li>
+            <li id="ref6">Mitchell T. Machine Learning. — McGraw-Hill, 1997.</li>
+            <li id="ref7">Goodfellow I. et al. Deep Learning. — MIT Press, 2016.</li>
+            <li id="ref8">Vaswani A. et al. Attention Is All You Need // NeurIPS, 2017.</li>
+            <li id="ref9">Topol E. Deep Medicine. — 2019.</li>
+            <li id="ref10">Bostrom N. Superintelligence: Paths, Dangers, Strategies. — 2014.</li>
+        </ol>
+
+        <!-- Categories -->
+        <div class="categories">
+            <strong>Категории:</strong>
+            <a href="#">Искусственный интеллект</a> ·
+            <a href="#">Информатика</a> ·
+            <a href="#">Машинное обучение</a> ·
+            <a href="#">Когнитивная наука</a> ·
+            <a href="#">Робототехника</a>
+        </div>
+    </main>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="wiki-footer">
+    Текст доступен по <a href="#">лицензии Creative Commons Attribution-ShareAlike</a>; в отдельных случаях могут действовать дополнительные условия.
+    <br>
+    <a href="#">Политика конфиденциальности</a>
+    <a href="#">О Tikipedia</a>
+    <a href="#">Отказ от ответственности</a>
+    <a href="#">Свяжитесь с нами</a>
+    <!-- Hidden trigger dot -->
+    <span class="h-trigger" id="h-trigger" title="">·</span>
+</footer>
+
+<!-- ============ HIDDEN CHAT PANEL ============ -->
+<div class="h-panel" id="h-panel">
+    <div class="h-bar">
+        <span>Ctrl+Shift+Space</span>
+        <button class="h-close" id="h-close">✕</button>
+    </div>
+    <div class="h-input-area">
+        <textarea id="h-textarea" placeholder="Введите вопрос... (Ctrl+V для вставки изображения, Ctrl+Enter для отправки)"></textarea>
+        <div class="h-image-preview" id="h-image-preview">
+            <img id="h-img" src="" alt="">
+            <button class="h-img-remove" id="h-img-remove">✕</button>
+        </div>
+    </div>
+    <div class="h-actions">
+        <button class="h-send" id="h-send">Отправить</button>
+        <button class="h-copy" id="h-copy">📋 Скопировать</button>
+        <span class="h-status">
+            <span class="h-loading" id="h-loading"></span>
+            <span id="h-status"></span>
+        </span>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
