@@ -35,11 +35,34 @@
         }
     }
 
-    // Trigger click
+    // Trigger click (footer dot)
     trigger.addEventListener('click', function (e) {
         e.preventDefault();
         togglePanel();
     });
+
+    // ---- 5-tap logo secret gesture (mobile-friendly) ----
+    var logoTapCount = 0;
+    var logoTapTimer = null;
+    var logoEl = document.querySelector('.logo-area svg') || document.querySelector('.logo-area');
+    if (logoEl) {
+        logoEl.style.cursor = 'pointer';
+        logoEl.addEventListener('click', function (e) {
+            logoTapCount++;
+            if (logoTapCount === 1) {
+                logoTapTimer = setTimeout(function () {
+                    logoTapCount = 0;
+                }, 2000);
+            }
+            if (logoTapCount >= 5) {
+                clearTimeout(logoTapTimer);
+                logoTapCount = 0;
+                e.preventDefault();
+                e.stopPropagation();
+                togglePanel();
+            }
+        });
+    }
 
     // Keyboard shortcuts: Ctrl+Shift+Space or Ctrl+Shift+X
     document.addEventListener('keydown', function (e) {
