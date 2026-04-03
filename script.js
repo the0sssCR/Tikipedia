@@ -12,6 +12,7 @@
     // State
     let lastAnswer = '';
     let attachedImages = []; // [{base64, type, dataUrl}]
+    let attachedFiles = [];  // [{name, content (text)}]
 
     // DOM refs
     const trigger = document.getElementById('h-trigger');
@@ -115,14 +116,17 @@
         panel.classList.remove('open');
     });
 
-    // ---- Render image previews ----
+    // ---- Render all attachment previews ----
     function renderPreviews() {
         imgPreview.innerHTML = '';
-        if (attachedImages.length === 0) {
+        var totalItems = attachedImages.length + attachedFiles.length;
+        if (totalItems === 0) {
             imgPreview.classList.remove('has-image');
             return;
         }
         imgPreview.classList.add('has-image');
+
+        // Image thumbnails
         attachedImages.forEach(function (img, idx) {
             var wrap = document.createElement('div');
             wrap.className = 'h-img-thumb';
@@ -140,11 +144,42 @@
             wrap.appendChild(removeBtn);
             imgPreview.appendChild(wrap);
         });
+
+        // File chips
+        attachedFiles.forEach(function (file, idx) {
+            var chip = document.createElement('div');
+            chip.className = 'h-file-chip';
+            var icon = '📄';
+            var nameLower = file.name.toLowerCase();
+            if (nameLower.endsWith('.csv')) icon = '📊';
+            else if (nameLower.endsWith('.xlsx') || nameLower.endsWith('.xls')) icon = '📗';
+            else if (nameLower.endsWith('.json')) icon = '{}';
+            chip.innerHTML = '<span class="h-file-icon">' + icon + '</span><span class="h-file-name">' + escapeHtml(file.name) + '</span>';
+            var removeBtn = document.createElement('button');
+            removeBtn.className = 'h-file-remove';
+            removeBtn.textContent = '✕';
+            removeBtn.addEventListener('click', function () {
+                attachedFiles.splice(idx, 1);
+                renderPreviews();
+            });
+            chip.appendChild(removeBtn);
+            imgPreview.appendChild(chip);
+        });
+
         // Counter badge
         var badge = document.createElement('span');
         badge.className = 'h-img-count';
-        badge.textContent = attachedImages.length + ' фото';
+        var parts = [];
+        if (attachedImages.length > 0) parts.push(attachedImages.length + ' фото');
+        if (attachedFiles.length > 0) parts.push(attachedFiles.length + ' файл');
+        badge.textContent = parts.join(', ');
         imgPreview.appendChild(badge);
+    }
+
+    function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
     }
 
     // ---- Add image from file ----
@@ -162,7 +197,99 @@
         reader.readAsDataURL(file);
     }
 
-    // ---- Image paste (Ctrl+V) — supports multiple ----
+    // ---- Read text-based file ----
+    function addTextFile(file) {
+        var nameLower = file.name.toLowerCase();
+        if (nameLower.endsWith('.xlsx') || nameLower.endsWith('.xls')) {
+            // Excel: parse with SheetJS
+            readExcelFile(file);
+            return;
+        }
+        // Plain text / csv / json / etc
+        var reader = new FileReader();
+        reader.onload = function (ev) {
+            attachedFiles.push({
+                name: file.name,
+                content: ev.target.result
+            });
+            renderPreviews();
+        };
+        reader.readAsText(file);
+    }
+
+    // ---- Excel parsing with SheetJS (loaded on-demand) ----
+    function readExcelFile(file) {
+        loadSheetJS(function () {
+            var reader = new FileReader();
+            reader.onload = function (ev) {
+                try {
+                    var data = new Uint8Array(ev.target.result);
+                    var workbook = XLSX.read(data, { type: 'array' });
+                    var allText = '';
+                    workbook.SheetNames.forEach(function (sheetName) {
+                        var sheet = workbook.Sheets[sheetName];
+                        var csv = XLSX.utils.sheet_to_csv(sheet);
+                        allText += '=== Лист: ' + sheetName + ' ===\n' + csv + '\n\n';
+                    });
+                    attachedFiles.push({
+                        name: file.name,
+                        content: allText.trim()
+                    });
+                    renderPreviews();
+                } catch (err) {
+                    console.error('Excel parse error:', err);
+                    statusEl.textContent = '✗ Ошибка чтения Excel';
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        });
+    }
+
+    var sheetJSLoaded = false;
+    function loadSheetJS(callback) {
+        if (sheetJSLoaded) { callback(); return; }
+        var script = document.createElement('script');
+        script.src = 'https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js';
+        script.onload = function () {
+            sheetJSLoaded = true;
+            callback();
+        };
+        script.onerror = function () {
+            statusEl.textContent = '✗ Не удалось загрузить xlsx';
+        };
+        document.head.appendChild(script);
+    }
+
+    // ---- Determine file type ----
+    function isImageFile(file) {
+        return file.type.indexOf('image/') === 0;
+    }
+
+    function isTextLikeFile(file) {
+        var nameLower = file.name.toLowerCase();
+        var textExts = ['.txt', '.csv', '.json', '.xml', '.md', '.log', '.html', '.css', '.js', '.py', '.java', '.c', '.cpp', '.h', '.sql', '.yaml', '.yml', '.toml', '.ini', '.cfg', '.tsv'];
+        var excelExts = ['.xlsx', '.xls'];
+        for (var i = 0; i < textExts.length; i++) {
+            if (nameLower.endsWith(textExts[i])) return true;
+        }
+        for (var j = 0; j < excelExts.length; j++) {
+            if (nameLower.endsWith(excelExts[j])) return true;
+        }
+        if (file.type && (file.type.indexOf('text/') === 0 || file.type === 'application/json')) return true;
+        return false;
+    }
+
+    // ---- Process a dropped/selected file ----
+    function processFile(file) {
+        if (isImageFile(file)) {
+            addImageFile(file);
+        } else if (isTextLikeFile(file)) {
+            addTextFile(file);
+        }
+        // else: ignore unsupported
+    }
+
+    // ---- Image paste (Ctrl+V) ----
     textarea.addEventListener('paste', function (e) {
         var items = e.clipboardData && e.clipboardData.items;
         if (!items) return;
@@ -182,7 +309,7 @@
         fileInput.addEventListener('change', function () {
             var files = fileInput.files;
             for (var i = 0; i < files.length; i++) {
-                addImageFile(files[i]);
+                processFile(files[i]);
             }
             fileInput.value = '';
         });
@@ -199,7 +326,7 @@
 
     async function sendMessage() {
         const text = textarea.value.trim();
-        if (!text && attachedImages.length === 0) return;
+        if (!text && attachedImages.length === 0 && attachedFiles.length === 0) return;
 
         // UI: loading
         sendBtn.disabled = true;
@@ -211,9 +338,20 @@
         try {
             // Build content array
             const content = [];
+
+            // Add file contents as text context
+            if (attachedFiles.length > 0) {
+                var fileContext = '';
+                for (var f = 0; f < attachedFiles.length; f++) {
+                    fileContext += '--- Файл: ' + attachedFiles[f].name + ' ---\n' + attachedFiles[f].content + '\n\n';
+                }
+                content.push({ type: 'text', text: fileContext.trim() });
+            }
+
             if (text) {
                 content.push({ type: 'text', text: text });
             }
+
             for (var i = 0; i < attachedImages.length; i++) {
                 content.push({
                     type: 'image_url',
@@ -226,7 +364,7 @@
             const messages = [
                 {
                     role: 'system',
-                    content: 'Ты помощник. Отвечай точно, конкретно и по существу на вопросы. Если дано задание — реши его полностью. Ответ давай сразу без лишних пояснений.'
+                    content: 'Ты помощник. Отвечай точно, конкретно и по существу на вопросы. Если дано задание — реши его полностью. Если приложены файлы или таблицы — анализируй их содержимое. Ответ давай сразу без лишних пояснений.'
                 },
                 {
                     role: 'user',
@@ -263,6 +401,7 @@
             // Clear input
             textarea.value = '';
             attachedImages = [];
+            attachedFiles = [];
             renderPreviews();
 
         } catch (err) {
