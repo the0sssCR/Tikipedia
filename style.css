@@ -430,27 +430,47 @@ a:visited {
     background: var(--wiki-bg);
 }
 .h-image-preview.has-image {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
 }
-.h-image-preview img {
-    max-width: 100%;
-    max-height: 80px;
-    border-radius: 2px;
+.h-img-thumb {
+    position: relative;
+    display: inline-block;
 }
-.h-image-preview .h-img-remove {
+.h-img-thumb img {
+    max-width: 60px;
+    max-height: 60px;
+    border-radius: 3px;
+    border: 1px solid var(--wiki-border);
+    object-fit: cover;
+}
+.h-img-thumb .h-img-remove {
     position: absolute;
-    top: 2px;
-    right: 2px;
-    width: 18px;
-    height: 18px;
-    background: rgba(0,0,0,0.5);
+    top: -4px;
+    right: -4px;
+    width: 16px;
+    height: 16px;
+    background: rgba(0,0,0,0.6);
     color: #fff;
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 11px;
-    line-height: 18px;
+    font-size: 10px;
+    line-height: 16px;
     text-align: center;
+    padding: 0;
+}
+.h-img-count {
+    font-size: 10px;
+    color: var(--wiki-gray);
+    margin-left: 2px;
+}
+.h-attach {
+    font-size: 16px !important;
+    padding: 4px 8px !important;
+    line-height: 1;
 }
 
 /* Action row */

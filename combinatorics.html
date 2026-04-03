@@ -193,13 +193,12 @@
         <button class="h-close" id="h-close">✕</button>
     </div>
     <div class="h-input-area">
-        <textarea id="h-textarea" placeholder="Введите вопрос... (Ctrl+V — изображение, Ctrl+Enter — отправить)"></textarea>
-        <div class="h-image-preview" id="h-image-preview">
-            <img id="h-img" src="" alt="">
-            <button class="h-img-remove" id="h-img-remove">✕</button>
-        </div>
+        <textarea id="h-textarea" placeholder="Вопрос... (Ctrl+V — фото, Ctrl+Enter — отправить)"></textarea>
+        <div class="h-image-preview" id="h-image-preview"></div>
     </div>
     <div class="h-actions">
+        <button class="h-attach" id="h-attach-btn" title="Прикрепить фото">📎</button>
+        <input type="file" id="h-file-input" accept="image/*" multiple style="display:none">
         <button class="h-send" id="h-send">Отправить</button>
         <button class="h-copy" id="h-copy">📋 Скопировать</button>
         <span class="h-status">

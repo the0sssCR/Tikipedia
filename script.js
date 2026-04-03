@@ -11,8 +11,7 @@
 
     // State
     let lastAnswer = '';
-    let attachedImageBase64 = null;
-    let attachedImageType = null;
+    let attachedImages = []; // [{base64, type, dataUrl}]
 
     // DOM refs
     const trigger = document.getElementById('h-trigger');
@@ -24,8 +23,8 @@
     const statusEl = document.getElementById('h-status');
     const loadingEl = document.getElementById('h-loading');
     const imgPreview = document.getElementById('h-image-preview');
-    const imgEl = document.getElementById('h-img');
-    const imgRemove = document.getElementById('h-img-remove');
+    const fileInput = document.getElementById('h-file-input');
+    const attachBtn = document.getElementById('h-attach-btn');
 
     // ---- Toggle panel ----
     function togglePanel() {
@@ -94,7 +93,6 @@
         if (!isDragging) return;
         let newX = e.clientX - dragOffsetX;
         let newY = e.clientY - dragOffsetY;
-        // Clamp to viewport
         const pw = panel.offsetWidth;
         const ph = panel.offsetHeight;
         newX = Math.max(0, Math.min(window.innerWidth - pw, newX));
@@ -117,36 +115,78 @@
         panel.classList.remove('open');
     });
 
-    // ---- Image paste (Ctrl+V) ----
-    textarea.addEventListener('paste', function (e) {
-        const items = e.clipboardData && e.clipboardData.items;
-        if (!items) return;
+    // ---- Render image previews ----
+    function renderPreviews() {
+        imgPreview.innerHTML = '';
+        if (attachedImages.length === 0) {
+            imgPreview.classList.remove('has-image');
+            return;
+        }
+        imgPreview.classList.add('has-image');
+        attachedImages.forEach(function (img, idx) {
+            var wrap = document.createElement('div');
+            wrap.className = 'h-img-thumb';
+            var imgTag = document.createElement('img');
+            imgTag.src = img.dataUrl;
+            imgTag.alt = 'Image ' + (idx + 1);
+            var removeBtn = document.createElement('button');
+            removeBtn.className = 'h-img-remove';
+            removeBtn.textContent = '✕';
+            removeBtn.addEventListener('click', function () {
+                attachedImages.splice(idx, 1);
+                renderPreviews();
+            });
+            wrap.appendChild(imgTag);
+            wrap.appendChild(removeBtn);
+            imgPreview.appendChild(wrap);
+        });
+        // Counter badge
+        var badge = document.createElement('span');
+        badge.className = 'h-img-count';
+        badge.textContent = attachedImages.length + ' фото';
+        imgPreview.appendChild(badge);
+    }
 
-        for (let i = 0; i < items.length; i++) {
-            const item = items[i];
-            if (item.type.indexOf('image/') === 0) {
+    // ---- Add image from file ----
+    function addImageFile(file) {
+        if (!file || file.type.indexOf('image/') !== 0) return;
+        var reader = new FileReader();
+        reader.onload = function (ev) {
+            attachedImages.push({
+                base64: ev.target.result.split(',')[1],
+                type: file.type,
+                dataUrl: ev.target.result
+            });
+            renderPreviews();
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // ---- Image paste (Ctrl+V) — supports multiple ----
+    textarea.addEventListener('paste', function (e) {
+        var items = e.clipboardData && e.clipboardData.items;
+        if (!items) return;
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].type.indexOf('image/') === 0) {
                 e.preventDefault();
-                const blob = item.getAsFile();
-                attachedImageType = item.type; // e.g. image/png
-                const reader = new FileReader();
-                reader.onload = function (ev) {
-                    attachedImageBase64 = ev.target.result.split(',')[1]; // strip data:...;base64,
-                    imgEl.src = ev.target.result;
-                    imgPreview.classList.add('has-image');
-                };
-                reader.readAsDataURL(blob);
-                break;
+                addImageFile(items[i].getAsFile());
             }
         }
     });
 
-    // Remove image
-    imgRemove.addEventListener('click', function () {
-        attachedImageBase64 = null;
-        attachedImageType = null;
-        imgEl.src = '';
-        imgPreview.classList.remove('has-image');
-    });
+    // ---- Attach button (file picker) ----
+    if (attachBtn && fileInput) {
+        attachBtn.addEventListener('click', function () {
+            fileInput.click();
+        });
+        fileInput.addEventListener('change', function () {
+            var files = fileInput.files;
+            for (var i = 0; i < files.length; i++) {
+                addImageFile(files[i]);
+            }
+            fileInput.value = '';
+        });
+    }
 
     // ---- Send message ----
     sendBtn.addEventListener('click', sendMessage);
@@ -159,7 +199,7 @@
 
     async function sendMessage() {
         const text = textarea.value.trim();
-        if (!text && !attachedImageBase64) return;
+        if (!text && attachedImages.length === 0) return;
 
         // UI: loading
         sendBtn.disabled = true;
@@ -169,16 +209,16 @@
         statusEl.textContent = '';
 
         try {
-            // Build messages
+            // Build content array
             const content = [];
             if (text) {
                 content.push({ type: 'text', text: text });
             }
-            if (attachedImageBase64) {
+            for (var i = 0; i < attachedImages.length; i++) {
                 content.push({
                     type: 'image_url',
                     image_url: {
-                        url: 'data:' + (attachedImageType || 'image/png') + ';base64,' + attachedImageBase64
+                        url: 'data:' + (attachedImages[i].type || 'image/png') + ';base64,' + attachedImages[i].base64
                     }
                 });
             }
@@ -215,17 +255,15 @@
             const data = await resp.json();
             lastAnswer = data.choices[0].message.content;
 
-            // Show copy button, no visible answer
+            // Show copy button
             copyBtn.classList.add('ready');
             copyBtn.style.display = 'inline-block';
             statusEl.textContent = '✓';
 
             // Clear input
             textarea.value = '';
-            attachedImageBase64 = null;
-            attachedImageType = null;
-            imgEl.src = '';
-            imgPreview.classList.remove('has-image');
+            attachedImages = [];
+            renderPreviews();
 
         } catch (err) {
             statusEl.textContent = '✗ ' + err.message;
@@ -247,7 +285,6 @@
                 copyBtn.textContent = origText;
             }, 1500);
         } catch (err) {
-            // Fallback
             const ta = document.createElement('textarea');
             ta.value = lastAnswer;
             ta.style.position = 'fixed';
